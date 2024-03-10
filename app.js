@@ -87,28 +87,6 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-// const validateListing = (req,res,next)=>{
-//     let {error} = listingSchema.validate(req.body);
-   
-//     if(error){
-//         let errMsg = error.details.map((el)=>el.message).join(" , ");
-//      throw new ExpressError(400,errMsg);
-//     }else{
-//         next();
-//     }
-// };
-
-// const validateReview = (req,res,next)=>{
-//     let {error} = reviewSchema.validate(req.body);
-   
-//     if(error){
-//         let errMsg = error.details.map((el)=>el.message).join(" , ");
-//      throw new ExpressError(400,errMsg);
-//     }else{
-//         next();
-//     }
-// };
-
 app.use((req,res,next)=>{
     res.locals.success= req.flash("success");
     res.locals.error= req.flash("error");
