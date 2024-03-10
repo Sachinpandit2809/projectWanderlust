@@ -16,7 +16,7 @@ const ExpressError=require("./utils/ExpressError.js");
 const {listingSchema,reviewSchema } = require("./schema.js")
 const Review= require('./models/reviews.js');
 
-// const {reviewSchema} = require("./schema.js")
+const {reviewSchema} = require("./schema.js")
 
 const listingsRouter = require("./routes/listing.js");
 const reviewsRouter = require("./routes/review.js");
@@ -42,7 +42,6 @@ app.use(express.static(path.join(__dirname,"/public")));
 
 
 const database = process.env.ATLAS;
-// const database1 = `mongodb+srv://userSachin2809:user2809@cluster0.sdwvxkm.mongodb.net/`
 main().then(()=>{
     console.log ("connected to database");
 }).catch((err)=>{
@@ -87,6 +86,8 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+
+
 app.use((req,res,next)=>{
     res.locals.success= req.flash("success");
     res.locals.error= req.flash("error");
@@ -95,15 +96,7 @@ app.use((req,res,next)=>{
     next();
 });
 
-// app.get("/demouser",async(req,res)=>{
-//     let fakeUser = new User({
-//         email:  "student@gmail.com",
-//         username: "delta-student"
-//     });
 
-//    let resisterUser= await  User.register(fakeUser,"helloworld");
-//    res.send(resisterUser)
-// })
 
 app.use("/listings",listingsRouter);
 app.use("/listings/:id/reviews",reviewsRouter);
