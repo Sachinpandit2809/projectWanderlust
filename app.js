@@ -16,7 +16,7 @@ const ExpressError=require("./utils/ExpressError.js");
 const {listingSchema,reviewSchema } = require("./schema.js")
 const Review= require('./models/reviews.js');
 
-const {reviewSchema} = require("./schema.js")
+// const {reviewSchema} = require("./schema.js")
 
 const listingsRouter = require("./routes/listing.js");
 const reviewsRouter = require("./routes/review.js");
